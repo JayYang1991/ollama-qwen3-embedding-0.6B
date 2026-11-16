@@ -1,0 +1,25 @@
+services:
+  ollama-qwen3-embedding-qdrant:
+    image: ollama-qwen3-embedding-0.6b:latest
+    container_name: ollama-qwen3-embedding-0.6b
+    ports:
+      - "11434:11434"
+      - "6333:6333"
+      - "6334:6334"
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_KEEP_ALIVE=-1
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    restart: unless-stopped
+    # 如需使用 NVIDIA GPU，请取消下方注释（需提前安装 nvidia-container-toolkit）
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  qdrant_storage:

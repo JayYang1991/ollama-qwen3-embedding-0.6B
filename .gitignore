@@ -1,0 +1,6 @@
+dist/
+*.tar
+*.tar.gz
+*.tar.gz.part.*
+SHA256SUMS
+.DS_Store
